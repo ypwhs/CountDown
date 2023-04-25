@@ -22,15 +22,37 @@
         margin:0 .25em;
         text-align:center;
     }
-
-    h1{
+    h1 {
         text-align:center;
     }
+
+    .fullscreen-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+#fullscreen-btn {
+    background-color: #eeeeee; /* 按钮颜色 */
+    color: white; /* 文本颜色 */
+    font-size: 0.8rem; /* 文本大小 */
+    padding: 10px 20px; /* 按钮内边距 */
+    border: none; /* 去除边框 */
+    border-radius: 5px; /* 圆角 */
+    cursor: pointer; /* 鼠标悬停效果 */
+}
+
 </style>
 
 </head>
 
-<h1>Happy Count Down</h1>
+<h1>Happy Count Down  </h1>
+
+<div class="fullscreen-container">
+  <button id="fullscreen-btn">全屏</button>
+</div>
+
+<h1></h1>
 
 <div class="tick"
      data-did-init="handleTickSplashInit">
@@ -59,6 +81,7 @@
 
 </div>
 
+
 <script>
     function handleTickSplashInit(tick) {
     var now = new Date();
@@ -74,6 +97,19 @@
         tick.value = value;
     };
     }
+
+    var fullscreenBtn = document.getElementById("fullscreen-btn");
+
+fullscreenBtn.addEventListener("click", function() {
+  if (document.documentElement.requestFullscreen) {
+    document.documentElement.requestFullscreen();
+  } else if (document.documentElement.webkitRequestFullscreen) {
+    document.documentElement.webkitRequestFullscreen();
+  } else if (document.documentElement.msRequestFullscreen) {
+    document.documentElement.msRequestFullscreen();
+  }
+});
+
 </script>
 
     <script src="./dist/flip.js"></script>
