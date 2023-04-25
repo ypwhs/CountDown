@@ -1,0 +1,82 @@
+<html>
+<head>
+    <title>Count Down</title>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width">
+    <link href="/dist/flip.css" rel="stylesheet">
+
+<style>
+    .tick {
+        padding-bottom: 1em;
+        font-size:1rem;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    }
+
+    .tick-label {
+        font-size:.375em;
+        text-align:center;
+    }
+
+    .tick-group {
+        margin:0 .25em;
+        text-align:center;
+    }
+
+    h1{
+        text-align:center;
+    }
+</style>
+
+</head>
+
+<h1>Count Down Demo</h1>
+
+<div class="tick"
+     data-did-init="handleTickSplashInit">
+
+    <div data-repeat="true"
+         data-layout="horizontal left fit"
+         data-transform="preset(d, h, m, s) -> delay">
+
+        <div class="tick-group">
+
+            <div data-key="value"
+                 data-repeat="true"
+                 data-transform="pad(00) -> split -> delay">
+
+                <span data-view="flip"></span>
+
+            </div>
+
+            <span data-key="label"
+                  data-view="text"
+                  class="tick-label"></span>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    function handleTickSplashInit(tick) {
+    var now = new Date();
+    if (now.getHours() < 12) {
+      now.setHours(11);
+      now.setMinutes(45);
+    } else {
+      now.setHours(17);
+      now.setMinutes(45);
+    }
+
+    Tick.count.down(now.toISOString()).onupdate = function (value) {
+        tick.value = value;
+    };
+    }
+</script>
+
+    <script src="/dist/flip.js"></script>
+
+</body>
+</html>
